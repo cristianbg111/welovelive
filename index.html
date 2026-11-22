@@ -429,7 +429,7 @@
       var input = document.getElementById('portalAdminPassword');
       var error = document.getElementById('portalAdminError');
       var submit = document.getElementById('portalAdminSubmit');
-      var storageKey = 'wll_portal_admin_session';
+      var storageKey = 'wll_portal_admin_session_v2';
       var active = false;
       var cards = [
         {element: document.getElementById('portalVideos'), address: 'aHR0cHM6Ly9jcmlzdGlhbmJnMTExLmdpdGh1Yi5pby93ZS1sb3ZlLWxpdmUtdmlkZW9zLw==', label: 'Acceder a WE LOVE LIVE VIDEOS', lockedLabel: 'WE LOVE LIVE VIDEOS, acceso bloqueado para administradores', cta: 'ENTRAR EN LIVE VIDEOS'},
@@ -485,7 +485,7 @@
       modal.addEventListener('click', function (event) { if (event.target === modal) hideModal(); });
       form.addEventListener('submit', function (event) {
         event.preventDefault();
-        if (input.value !== atob('cmVtZW1iZXIyMDA2')) {
+        if (input.value !== atob('cmVtZW1iZXIyMDI2')) {
           error.hidden = false;
           input.focus();
           return;

@@ -113,6 +113,34 @@
     .quiz .visit span{background:#b99aff;color:#201133}
     @media(min-width:1041px){.destination.quiz{grid-column:2}}
     @media(min-width:681px) and (max-width:1040px){.destination.quiz{grid-column:1 / -1;min-height:224px}}
+    /* Resplandor y destellos suaves en las tarjetas de acceso. */
+    .destination{--card-rgb:255,22,141;border-color:rgba(var(--card-rgb),.32);box-shadow:0 0 0 1px rgba(var(--card-rgb),.05),0 0 22px rgba(var(--card-rgb),.14)}
+    .destination.videos{--card-rgb:57,218,250}
+    .destination.agenda{--card-rgb:255,205,52}
+    .destination.quiz{--card-rgb:185,154,255}
+    .destination:before{-webkit-animation:wll-card-glow 6.4s ease-in-out infinite;animation:wll-card-glow 6.4s ease-in-out infinite}
+    .destination:after{content:"";position:absolute;top:-45%;bottom:-45%;left:-85%;width:55%;z-index:1;pointer-events:none;opacity:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);-webkit-transform:translateX(-110%) rotate(17deg);transform:translateX(-110%) rotate(17deg);-webkit-animation:wll-card-shine 9s ease-in-out infinite;animation:wll-card-shine 9s ease-in-out infinite}
+    .destination .card-glint{position:absolute;z-index:2;width:14px;height:14px;opacity:0;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,255,255,.15) 27%,transparent 62%);-webkit-animation:wll-card-glint 8s ease-in-out infinite;animation:wll-card-glint 8s ease-in-out infinite}
+    .destination .card-glint:before,.destination .card-glint:after{content:"";position:absolute;left:50%;top:50%;border-radius:100%;background:rgba(255,255,255,.8);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}
+    .destination .card-glint:before{width:1px;height:100%}
+    .destination .card-glint:after{width:100%;height:1px}
+    .destination .card-glint-a{right:18px;top:1px}
+    .destination .card-glint-b{left:18px;bottom:1px;-webkit-animation-delay:-3.5s;animation-delay:-3.5s}
+    .destination.videos:before,.destination.videos:after,.destination.videos .card-glint-a{-webkit-animation-delay:-2s;animation-delay:-2s}
+    .destination.agenda:before,.destination.agenda:after,.destination.agenda .card-glint-a{-webkit-animation-delay:-4s;animation-delay:-4s}
+    .destination.quiz:before,.destination.quiz:after,.destination.quiz .card-glint-a{-webkit-animation-delay:-6s;animation-delay:-6s}
+    .destination.videos .card-glint-b{-webkit-animation-delay:-5.5s;animation-delay:-5.5s}
+    .destination.agenda .card-glint-b{-webkit-animation-delay:-7.5s;animation-delay:-7.5s}
+    .destination.quiz .card-glint-b{-webkit-animation-delay:-1.5s;animation-delay:-1.5s}
+    @-webkit-keyframes wll-card-glow{0%,100%{opacity:.19;-webkit-transform:scale(.96)}50%{opacity:.48;-webkit-transform:scale(1.05)}}
+    @keyframes wll-card-glow{0%,100%{opacity:.19;transform:scale(.96)}50%{opacity:.48;transform:scale(1.05)}}
+    @-webkit-keyframes wll-card-shine{0%,5%{opacity:0;-webkit-transform:translateX(-110%) rotate(17deg)}10%{opacity:.75}25%{opacity:.5}30%,100%{opacity:0;-webkit-transform:translateX(520%) rotate(17deg)}}
+    @keyframes wll-card-shine{0%,5%{opacity:0;transform:translateX(-110%) rotate(17deg)}10%{opacity:.75}25%{opacity:.5}30%,100%{opacity:0;transform:translateX(520%) rotate(17deg)}}
+    @-webkit-keyframes wll-card-glint{0%,14%,26%,100%{opacity:0;-webkit-transform:scale(.45) rotate(0deg)}18%,21%{opacity:.9;-webkit-transform:scale(1) rotate(45deg)}}
+    @keyframes wll-card-glint{0%,14%,26%,100%{opacity:0;transform:scale(.45) rotate(0deg)}18%,21%{opacity:.9;transform:scale(1) rotate(45deg)}}
+    @media(hover:hover){.destination:hover{border-color:rgba(var(--card-rgb),.8);box-shadow:0 19px 48px rgba(0,0,0,.25),0 0 28px rgba(var(--card-rgb),.35)}}
+    .destination:active,.destination:focus-visible{border-color:rgba(var(--card-rgb),.8);box-shadow:0 0 28px rgba(var(--card-rgb),.35)}
+    @media(prefers-reduced-motion:reduce){.destination:before,.destination:after,.destination .card-glint{-webkit-animation:none!important;animation:none!important}}
   </style>
 </head>
 <body>
@@ -147,6 +175,7 @@
             <h2>WE LOVE<br>LIVE MUSIC</h2>
             <p>Pide canciones, participa y vive cada evento al ritmo de la música.</p>
             <div class="visit"><span>ENTRAR EN LIVE MUSIC</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+            <span class="card-glint card-glint-a" aria-hidden="true"></span><span class="card-glint card-glint-b" aria-hidden="true"></span>
           </a>
           <a class="destination videos" href="https://cristianbg111.github.io/we-love-live-videos/" aria-label="Acceder a WE LOVE LIVE VIDEOS">
             <div class="head"><div class="app-icon" aria-hidden="true">
@@ -155,6 +184,7 @@
             <h2>WE LOVE<br>LIVE VIDEOS</h2>
             <p>Control visual, vídeos y cámara en directo para cada espectáculo.</p>
             <div class="visit"><span>ENTRAR EN LIVE VIDEOS</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+            <span class="card-glint card-glint-a" aria-hidden="true"></span><span class="card-glint card-glint-b" aria-hidden="true"></span>
           </a>
           <a class="destination agenda" href="https://cristianbg111.github.io/EventosWeLove/" aria-label="Acceder a AgendaWeLove">
             <div class="head"><div class="app-icon" aria-hidden="true">
@@ -163,14 +193,16 @@
             <h2>AGENDA<br>WE LOVE</h2>
             <p>Consulta AgendaWeLove y accede a la información de los eventos.</p>
             <div class="visit"><span>ENTRAR EN AGENDA</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+            <span class="card-glint card-glint-a" aria-hidden="true"></span><span class="card-glint card-glint-b" aria-hidden="true"></span>
           </a>
-          <a class="destination quiz" href="https://cristianbg111.github.io/welovelivequiz/" aria-label="Acceder a We Love Quiz">
+          <a class="destination quiz" href="https://cristianbg111.github.io/welovelivequiz/" aria-label="Acceder a We Love Live Quiz">
             <div class="head"><div class="app-icon" aria-hidden="true">
               <svg viewBox="0 0 32 32"><rect x="5" y="3" width="22" height="26" rx="4"/><path d="M12.5 12a3.5 3.5 0 1 1 5.2 3.1c-1.1.6-1.7 1.3-1.7 2.9M16 23h.01"/></svg>
             </div><span class="tag">JUEGO DE PREGUNTAS</span></div>
-            <h2>WE LOVE<br>QUIZ</h2>
+            <h2>WE LOVE<br>LIVE QUIZ</h2>
             <p>Pon a prueba tus conocimientos y disfruta jugando.</p>
-            <div class="visit"><span>ENTRAR EN QUIZ</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+            <div class="visit"><span>ENTRAR EN LIVE QUIZ</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+            <span class="card-glint card-glint-a" aria-hidden="true"></span><span class="card-glint card-glint-b" aria-hidden="true"></span>
           </a>
         </div>
       </section>

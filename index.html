@@ -141,6 +141,24 @@
     @media(hover:hover){.destination:hover{border-color:rgba(var(--card-rgb),.8);box-shadow:0 19px 48px rgba(0,0,0,.25),0 0 28px rgba(var(--card-rgb),.35)}}
     .destination:active,.destination:focus-visible{border-color:rgba(var(--card-rgb),.8);box-shadow:0 0 28px rgba(var(--card-rgb),.35)}
     @media(prefers-reduced-motion:reduce){.destination:before,.destination:after,.destination .card-glint{-webkit-animation:none!important;animation:none!important}}
+    /* Acceso visual de administrador, compatible con controles táctiles. */
+    .top-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex:0 0 auto}
+    .admin-toggle{min-height:36px;padding:8px 13px;border:1px solid rgba(255,255,255,.24);border-radius:100px;background:#241d32;color:var(--white);font-size:11px;font-weight:800;letter-spacing:.04em;white-space:nowrap;cursor:pointer}
+    .admin-toggle:hover,.admin-toggle:focus-visible{border-color:var(--yellow);background:#342743}
+    .destination.is-locked{opacity:.62;-webkit-filter:grayscale(.75);filter:grayscale(.75);pointer-events:none;cursor:not-allowed}
+    .destination.is-locked .visit svg{opacity:.4}
+    .portal-admin-modal[hidden]{display:none!important}
+    .portal-admin-modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:20px;background:rgba(4,3,9,.82)}
+    .portal-admin-panel{position:relative;width:100%;max-width:390px;padding:26px;border:1px solid rgba(255,205,52,.35);border-radius:22px;background:#17121e;box-shadow:0 20px 70px rgba(0,0,0,.55);color:var(--white)}
+    .portal-admin-panel h2{margin:0 42px 8px 0;font-size:24px;line-height:1.2}
+    .portal-admin-panel p{margin:0 0 20px;color:var(--muted);font-size:14px;line-height:1.5}
+    .portal-admin-panel label{display:block;margin:0 0 8px;font-size:13px;font-weight:800}
+    .portal-admin-input{display:block;width:100%;height:48px;padding:0 13px;border:1px solid rgba(255,255,255,.3);border-radius:12px;background:#0c0a11;color:#fff;font-size:16px;outline:none;-webkit-appearance:none;appearance:none}
+    .portal-admin-input:focus{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,205,52,.16)}
+    .portal-admin-error{margin:9px 0 0!important;color:#ff9aad!important;font-size:13px!important}
+    .portal-admin-submit{display:block;width:100%;min-height:46px;margin-top:18px;border:0;border-radius:12px;background:var(--yellow);color:#201323;font-weight:900;cursor:pointer}
+    .portal-admin-close{position:absolute;right:17px;top:15px;width:38px;height:38px;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:#282030;color:white;font-size:23px;line-height:1;cursor:pointer}
+    @media(max-width:520px){.top-actions{flex-direction:column-reverse;align-items:flex-end;gap:5px}.top-actions .top-pill{padding:5px 8px;font-size:8px}.admin-toggle{min-height:32px;padding:6px 11px}.portal-admin-panel{padding:22px}}
   </style>
 </head>
 <body>
@@ -150,7 +168,10 @@
         <div class="brandmark" aria-hidden="true">W</div>
         <div class="brandcopy"><strong>WE LOVE LIVE</strong><span>MÚSICA · VÍDEO · EXPERIENCIAS</span></div>
       </div>
-      <span class="top-pill">PORTAL OFICIAL</span>
+      <div class="top-actions">
+        <span class="top-pill">PORTAL OFICIAL</span>
+        <button class="admin-toggle" id="portalAdminButton" type="button" aria-haspopup="dialog" aria-expanded="false">Admin</button>
+      </div>
     </header>
 
     <main id="main">
@@ -177,22 +198,22 @@
             <div class="visit"><span>ENTRAR EN LIVE MUSIC</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
             <span class="card-glint card-glint-a" aria-hidden="true"></span><span class="card-glint card-glint-b" aria-hidden="true"></span>
           </a>
-          <a class="destination videos" href="https://cristianbg111.github.io/we-love-live-videos/" aria-label="Acceder a WE LOVE LIVE VIDEOS">
+          <a class="destination videos is-locked" id="portalVideos" role="link" aria-disabled="true" tabindex="-1" aria-label="WE LOVE LIVE VIDEOS, acceso bloqueado para administradores">
             <div class="head"><div class="app-icon" aria-hidden="true">
               <svg viewBox="0 0 32 32"><rect x="3" y="7" width="19" height="18" rx="4"/><path d="m22 13 7-4v14l-7-4M11 12l6 4-6 4z"/></svg>
             </div><span class="tag">CONTROL VISUAL</span></div>
             <h2>WE LOVE<br>LIVE VIDEOS</h2>
             <p>Control visual, vídeos y cámara en directo para cada espectáculo.</p>
-            <div class="visit"><span>ENTRAR EN LIVE VIDEOS</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+            <div class="visit"><span>🔒 SOLO ADMIN</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
             <span class="card-glint card-glint-a" aria-hidden="true"></span><span class="card-glint card-glint-b" aria-hidden="true"></span>
           </a>
-          <a class="destination agenda" href="https://cristianbg111.github.io/EventosWeLove/" aria-label="Acceder a AgendaWeLove">
+          <a class="destination agenda is-locked" id="portalAgenda" role="link" aria-disabled="true" tabindex="-1" aria-label="AgendaWeLove, acceso bloqueado para administradores">
             <div class="head"><div class="app-icon" aria-hidden="true">
               <svg viewBox="0 0 32 32"><rect x="4" y="7" width="24" height="22" rx="4"/><path d="M10 3v8m12-8v8M4 15h24M10 21h4m4 0h4m-12 4h4"/></svg>
             </div><span class="tag">EVENTOS Y AGENDA</span></div>
             <h2>AGENDA<br>WE LOVE</h2>
             <p>Consulta AgendaWeLove y accede a la información de los eventos.</p>
-            <div class="visit"><span>ENTRAR EN AGENDA</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+            <div class="visit"><span>🔒 SOLO ADMIN</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
             <span class="card-glint card-glint-a" aria-hidden="true"></span><span class="card-glint card-glint-b" aria-hidden="true"></span>
           </a>
           <a class="destination quiz" href="https://cristianbg111.github.io/welovelivequiz/" aria-label="Acceder a We Love Live Quiz">
@@ -216,6 +237,19 @@
         <button id="wakeButton" class="wake-button" type="button" hidden>Activar pantalla</button>
       </div>
     </footer>
+  </div>
+  <div class="portal-admin-modal" id="portalAdminModal" role="dialog" aria-modal="true" aria-labelledby="portalAdminTitle" aria-hidden="true" hidden>
+    <div class="portal-admin-panel">
+      <button class="portal-admin-close" id="portalAdminClose" type="button" aria-label="Cerrar">×</button>
+      <h2 id="portalAdminTitle">Acceso Admin</h2>
+      <p>Introduce la contraseña para activar Agenda y We Love Live Videos.</p>
+      <form id="portalAdminForm">
+        <label for="portalAdminPassword">Contraseña</label>
+        <input class="portal-admin-input" id="portalAdminPassword" type="password" autocomplete="current-password" required>
+        <p class="portal-admin-error" id="portalAdminError" role="alert" hidden>Contraseña incorrecta. Inténtalo de nuevo.</p>
+        <button class="portal-admin-submit" id="portalAdminSubmit" type="submit">Entrar</button>
+      </form>
+    </div>
   </div>
   <script>
     'use strict';
@@ -382,6 +416,97 @@
       window.addEventListener('pagehide', () => { if (sentinel) sentinel.release().catch(() => {}); });
       // Primer intento automático. Si Safari exige un gesto, se muestra el control manual.
       acquire();
+    })();
+  </script>
+  <script>
+    // Bloqueo visual del portal. Las aplicaciones y sus direcciones originales siguen siendo públicas.
+    (function () {
+      'use strict';
+      var button = document.getElementById('portalAdminButton');
+      var modal = document.getElementById('portalAdminModal');
+      var close = document.getElementById('portalAdminClose');
+      var form = document.getElementById('portalAdminForm');
+      var input = document.getElementById('portalAdminPassword');
+      var error = document.getElementById('portalAdminError');
+      var submit = document.getElementById('portalAdminSubmit');
+      var storageKey = 'wll_portal_admin_session';
+      var active = false;
+      var cards = [
+        {element: document.getElementById('portalVideos'), address: 'aHR0cHM6Ly9jcmlzdGlhbmJnMTExLmdpdGh1Yi5pby93ZS1sb3ZlLWxpdmUtdmlkZW9zLw==', label: 'Acceder a WE LOVE LIVE VIDEOS', lockedLabel: 'WE LOVE LIVE VIDEOS, acceso bloqueado para administradores', cta: 'ENTRAR EN LIVE VIDEOS'},
+        {element: document.getElementById('portalAgenda'), address: 'aHR0cHM6Ly9jcmlzdGlhbmJnMTExLmdpdGh1Yi5pby9FdmVudG9zV2VMb3ZlLw==', label: 'Acceder a AgendaWeLove', lockedLabel: 'AgendaWeLove, acceso bloqueado para administradores', cta: 'ENTRAR EN AGENDA'}
+      ];
+
+      function render(enabled) {
+        active = enabled;
+        button.textContent = enabled ? 'Salir Admin' : 'Admin';
+        button.setAttribute('aria-label', enabled ? 'Cerrar sesión de administrador' : 'Iniciar sesión como administrador');
+        cards.forEach(function (card) {
+          var el = card.element;
+          var cta = el.querySelector('.visit span');
+          el.classList.toggle('is-locked', !enabled);
+          el.setAttribute('aria-label', enabled ? card.label : card.lockedLabel);
+          if (enabled) {
+            el.setAttribute('href', atob(card.address));
+            el.removeAttribute('aria-disabled');
+            el.removeAttribute('tabindex');
+            cta.textContent = card.cta;
+          } else {
+            el.removeAttribute('href');
+            el.setAttribute('aria-disabled', 'true');
+            el.setAttribute('tabindex', '-1');
+            cta.textContent = '🔒 SOLO ADMIN';
+          }
+        });
+      }
+      function save(enabled) {
+        try {
+          if (enabled) sessionStorage.setItem(storageKey, '1');
+          else sessionStorage.removeItem(storageKey);
+        } catch (ignore) { /* El acceso sigue funcionando en memoria si el navegador bloquea el almacenamiento. */ }
+      }
+      function hideModal() {
+        modal.hidden = true;
+        modal.setAttribute('aria-hidden', 'true');
+        button.setAttribute('aria-expanded', 'false');
+        input.value = '';
+        error.hidden = true;
+        button.focus();
+      }
+      button.addEventListener('click', function () {
+        if (active) { save(false); render(false); return; }
+        input.value = '';
+        error.hidden = true;
+        modal.hidden = false;
+        modal.setAttribute('aria-hidden', 'false');
+        button.setAttribute('aria-expanded', 'true');
+        input.focus();
+      });
+      close.addEventListener('click', hideModal);
+      modal.addEventListener('click', function (event) { if (event.target === modal) hideModal(); });
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (input.value !== atob('cmVtZW1iZXIyMDA2')) {
+          error.hidden = false;
+          input.focus();
+          return;
+        }
+        save(true);
+        render(true);
+        hideModal();
+      });
+      input.addEventListener('input', function () { error.hidden = true; });
+      document.addEventListener('keydown', function (event) {
+        if (modal.hidden) return;
+        if (event.key === 'Escape') { event.preventDefault(); hideModal(); return; }
+        if (event.key === 'Tab') {
+          var items = [close, input, submit];
+          var index = items.indexOf(document.activeElement);
+          if (event.shiftKey && index <= 0) { event.preventDefault(); submit.focus(); }
+          else if (!event.shiftKey && (index === items.length - 1 || index === -1)) { event.preventDefault(); close.focus(); }
+        }
+      });
+      try { active = sessionStorage.getItem(storageKey) === '1'; } catch (ignore) { active = false; }
+      render(active);
     })();
   </script>
 </body>

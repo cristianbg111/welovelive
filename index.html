@@ -159,6 +159,29 @@
     .portal-admin-submit{display:block;width:100%;min-height:46px;margin-top:18px;border:0;border-radius:12px;background:var(--yellow);color:#201323;font-weight:900;cursor:pointer}
     .portal-admin-close{position:absolute;right:17px;top:15px;width:38px;height:38px;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:#282030;color:white;font-size:23px;line-height:1;cursor:pointer}
     @media(max-width:520px){.top-actions{flex-direction:column-reverse;align-items:flex-end;gap:5px}.top-actions .top-pill{padding:5px 8px;font-size:8px}.admin-toggle{min-height:32px;padding:6px 11px}.portal-admin-panel{padding:22px}}
+    /* Margenes seguros y controles táctiles para móviles, incluido Safari en iPhone. */
+    .page{padding-top:22px;padding-top:calc(22px + env(safe-area-inset-top,0px));padding-left:17px;padding-right:17px;padding-left:clamp(17px,4.5vw,46px);padding-right:clamp(17px,4.5vw,46px);padding-bottom:30px;padding-bottom:max(30px,calc(env(safe-area-inset-bottom,0px) + 12px))}
+    @supports(padding-left:max(1px,2px)){
+      .page{padding-left:max(clamp(17px,4.5vw,46px),calc(env(safe-area-inset-left,0px) + 12px));padding-right:max(clamp(17px,4.5vw,46px),calc(env(safe-area-inset-right,0px) + 12px))}
+    }
+    @media(max-width:680px),(pointer:coarse){
+      .page{padding-top:48px;padding-top:max(48px,calc(env(safe-area-inset-top,0px) + 16px))}
+    }
+    @media(max-width:360px){
+      .page{padding-left:13px;padding-right:13px}
+      @supports(padding-left:max(1px,2px)){
+        .page{padding-left:max(13px,calc(env(safe-area-inset-left,0px) + 12px));padding-right:max(13px,calc(env(safe-area-inset-right,0px) + 12px))}
+      }
+    }
+    .topbar{position:relative;z-index:10;min-width:0}
+    .top-actions{position:relative;z-index:1}
+    .admin-toggle{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;min-width:84px;min-height:48px;padding:10px 16px;font-size:13px;line-height:1.2;touch-action:manipulation}
+    @media(max-width:320px){.topbar{gap:8px}.brand{gap:8px}.brandcopy span{font-size:8px;letter-spacing:.02em}}
+    @media(max-width:280px){.topbar{flex-wrap:wrap}.top-actions{margin-left:auto}}
+    .portal-admin-modal{align-items:flex-start;-webkit-overflow-scrolling:touch;padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px;padding-top:max(20px,calc(env(safe-area-inset-top,0px) + 12px));padding-right:max(20px,calc(env(safe-area-inset-right,0px) + 12px));padding-bottom:max(20px,calc(env(safe-area-inset-bottom,0px) + 12px));padding-left:max(20px,calc(env(safe-area-inset-left,0px) + 12px))}
+    .portal-admin-panel{flex-shrink:0;margin-top:auto;margin-bottom:auto}
+    .portal-admin-close{width:44px;height:44px}
+    .portal-admin-panel h2{margin-right:48px}
   </style>
 </head>
 <body>
